@@ -37,7 +37,7 @@ $ export PUBSUB_PROJECT_ID=local-pubsub
 
 ### 1. Topics Management:
 
-1.1. created topics:
+1.1. Created topics:
 ```
 $ python3 pubsub-utils/publisher.py create <topic-1> <topic-N>
 ```
@@ -52,7 +52,7 @@ $ python3 pubsub-utils/publisher.py delete <topic-1> <topic-N>
 $ python3 pubsub-utils/publisher.py list
 ```
 
-### 2 subscriptions Management
+### 2 Subscriptions Management
 2.1. Create subscriptions:
 
 ``` 
@@ -66,14 +66,14 @@ $ python3 pubsub-utils/subscriber.py create --topics <topic-1> <topic-N> --subsc
 $ python3 pubsub-utils/subscriber.py delete <subcscrption_id>
 ```
 
-2.3. List all subscription in the project:
+2.3. List all subscriptions in the project:
 
 ``` 
 $ python3 pubsub-utils/subscriber.py list-in-project
 ```
 
 
-2.4. List all subscription in a topic:
+2.4. List all subscriptions in a topic:
 
 ``` 
 $ python3 pubsub-utils/subscriber.py list-in-topic <topic_id>
