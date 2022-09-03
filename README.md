@@ -1,6 +1,7 @@
 # Gcloud Pub/Sub Emulador
 
 This project was developed to facilitate the use of [Pub/Sub Emulator](https://cloud.google.com/pubsub/docs/emulator) for testing on localhost or development environment.
+
 Python scripts have been created (based on the scripts provided [here](https://github.com/googleapis/python-pubsub)) to facilitate the management of Topics and Subscriptions.
 
 ## Usage
