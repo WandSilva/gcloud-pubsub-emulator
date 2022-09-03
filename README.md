@@ -10,9 +10,7 @@ Python scripts have been created (based on the scripts provided [here](https://g
 clone this repository and run:
 ```
   $ cd gcloud-pubsub-emulador/
-
   $ docker build -t pubsub-emulator .
-
   $ docker run --rm -p "8085:8085" --env 'PROJECT_ID=<fake-project-id>' pubsub-emulator
 ```
 The `PROJECT_ID` does not need to represent a real Google Cloud project because the Pub/Sub emulator runs locally
@@ -22,19 +20,20 @@ The `PROJECT_ID` does not need to represent a real Google Cloud project because 
 The scripts present in [/pubsub-utils](/pubsub-utils) can be used to manage topics and subscriptions.
 Some functions will be described below:
 
-Before run the python scripts is necessary install the dependencies and export the environment variables.
+Before run the python scripts is necessary install the dependencies and export the environment variables. If you don't want to use [Poetry](https://python-poetry.org/) to configure the environment, just install the dependencies present in [pyproject.toml](pyproject.toml) as you see fit.
+
+
+```
+install project dependencies and spawns a shell
+$ poetry install
+$ poetry shell
+```
 
 ```
 export the environment variables:
 $ export PUBSUB_EMULATOR_HOST=localhost:8085
 $ export PUBSUB_PROJECT_ID=local-pubsub
 ```
-```
-install project dependencies end start shell
-$ poetry install
-$ poetry shell
-```
-
 
 ### 1. Topics Management:
 
