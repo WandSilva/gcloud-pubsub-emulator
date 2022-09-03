@@ -22,6 +22,20 @@ The `PROJECT_ID` does not need to represent a real Google Cloud project because 
 The scripts present in [/pubsub-utils](/pubsub-utils) can be used to manage topics and subscriptions.
 Some functions will be described below:
 
+Before run the python scripts is necessary install the dependencies and export the environment variables.
+
+```
+export the environment variables:
+$ export PUBSUB_EMULATOR_HOST=localhost:8085
+$ export PUBSUB_PROJECT_ID=local-pubsub
+```
+```
+install project dependencies end start shell
+$ poetry install
+$ poetry shell
+```
+
+
 ### 1. Topics Management:
 
 1.1. created topics:
