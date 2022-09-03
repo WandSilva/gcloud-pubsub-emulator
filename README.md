@@ -32,7 +32,7 @@ $ poetry shell
 ```
 export the environment variables:
 $ export PUBSUB_EMULATOR_HOST=localhost:8085
-$ export PUBSUB_PROJECT_ID=local-pubsub
+$ export PUBSUB_PROJECT_ID=<fake-project-id>
 ```
 
 ### 1. Topics Management:
