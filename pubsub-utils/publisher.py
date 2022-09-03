@@ -1,5 +1,7 @@
 
 import argparse
+import os
+
 
 from google.cloud import pubsub_v1
 
@@ -37,11 +39,11 @@ def delete_topic(project_id: str, topic_id: str) -> None:
 
 
 if __name__ == "__main__":
+    PUBSUB_PROJECT_ID = os.environ.get('PUBSUB_PROJECT_ID')
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
-    parser.add_argument("project_id", help="Your Google Cloud project ID")
     subparsers = parser.add_subparsers(dest="command")
     subparsers.add_parser("list", help=list_topics.__doc__)
 
@@ -54,13 +56,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.command == "list":
-        list_topics(args.project_id)
+        list_topics(PUBSUB_PROJECT_ID)
     
     elif args.command == "create":
         for topic_id in args.topic_ids:
-            create_topic(args.project_id, topic_id)
+            create_topic(PUBSUB_PROJECT_ID, topic_id)
     
     elif args.command == "delete":
         for topic_id in args.topic_ids:
-            delete_topic(args.project_id, topic_id)
+            delete_topic(PUBSUB_PROJECT_ID, topic_id)
 

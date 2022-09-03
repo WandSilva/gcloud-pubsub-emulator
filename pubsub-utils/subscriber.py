@@ -1,4 +1,6 @@
 import argparse
+import os
+
 
 from google.cloud import pubsub_v1
 
@@ -56,10 +58,10 @@ def delete_subscription(project_id: str, subscription_id: str) -> None:
 
 
 if __name__ == "__main__":
+    PUBSUB_PROJECT_ID = os.environ.get('PUBSUB_PROJECT_ID')
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("project_id", help="Your Google Cloud project ID")
 
     subparsers = parser.add_subparsers(dest="command")
     list_in_topic_parser = subparsers.add_parser(
@@ -72,8 +74,8 @@ if __name__ == "__main__":
     )
 
     create_parser = subparsers.add_parser("create", help=create_subscription.__doc__)
-    create_parser.add_argument("--topic_ids", nargs="+")
-    create_parser.add_argument("--subscription_ids", nargs="+")
+    create_parser.add_argument("--topic", nargs="+")
+    create_parser.add_argument("--subscriptions", nargs="+")
 
     delete_parser = subparsers.add_parser("delete", help=delete_subscription.__doc__)
     delete_parser.add_argument("subscription_id")
@@ -82,14 +84,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.command == "list-in-topic":
-        list_subscriptions_in_topic(args.project_id, args.topic_id)
+        list_subscriptions_in_topic(PUBSUB_PROJECT_ID, args.topic_id)
     
     elif args.command == "list-in-project":
-        list_subscriptions_in_project(args.project_id)
+        list_subscriptions_in_project(PUBSUB_PROJECT_ID)
     
     elif args.command == "create":
         for topic_id, subscription_id in zip(args.topic_ids, args.subscription_ids):
-            create_subscription(args.project_id, topic_id, subscription_id)
+            create_subscription(PUBSUB_PROJECT_ID, topic_id, subscription_id)
     
     elif args.command == "delete":
-        delete_subscription(args.project_id, args.subscription_id)
+        delete_subscription(PUBSUB_PROJECT_ID, args.subscription_id)
