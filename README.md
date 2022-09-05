@@ -13,7 +13,7 @@ clone this repository and run:
   $ make build
   $ make run project_id=<fake-project-id>
 ```
-The `PROJECT_ID` does not need to represent a real Google Cloud project because the Pub/Sub emulator runs locally
+The `project_id` does not need to represent a real Google Cloud project because the Pub/Sub emulator runs locally
 
 ## - Management of Topics and Subscriptions
 
