@@ -10,9 +10,9 @@ clone this repository and run:
 ```
   $ cd gcloud-pubsub-emulador/
 
-  $ docker build -t pubsub-emulator .
+  $ make build
 
-  $ docker run --rm -p "8085:8085" --env 'PROJECT_ID=<fake-project-id>' pubsub-emulator
+  $ make run project_id=<fake-project-id>
 ```
 The `PROJECT_ID` does not need to represent a real Google Cloud project because the Pub/Sub emulator runs locally
 
