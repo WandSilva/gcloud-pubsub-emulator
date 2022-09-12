@@ -74,7 +74,7 @@ if __name__ == "__main__":
     )
 
     create_parser = subparsers.add_parser("create", help=create_subscription.__doc__)
-    create_parser.add_argument("--topic", nargs="+")
+    create_parser.add_argument("--topics", nargs="+")
     create_parser.add_argument("--subscriptions", nargs="+")
 
     delete_parser = subparsers.add_parser("delete", help=delete_subscription.__doc__)
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         list_subscriptions_in_project(PUBSUB_PROJECT_ID)
     
     elif args.command == "create":
-        for topic_id, subscription_id in zip(args.topic_ids, args.subscription_ids):
+        for topic_id, subscription_id in zip(args.topics, args.subscriptions):
             create_subscription(PUBSUB_PROJECT_ID, topic_id, subscription_id)
     
     elif args.command == "delete":
