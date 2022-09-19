@@ -1,5 +1,6 @@
 
 import argparse
+import json
 import os
 
 
@@ -37,6 +38,23 @@ def delete_topic(project_id: str, topic_id: str) -> None:
     print(f"Topic deleted: {topic_path}")
 
 
+def publish_in_topic(project_id: str, topic_id: str):
+    """Publish a message in an existing Pub/Sub topic."""
+
+    publisher = pubsub_v1.PublisherClient()
+    topic_path = publisher.topic_path(project_id, topic_id)
+    
+    message = {
+        "foo": "bar"
+    }
+
+    data = json.dumps(message).encode("utf-8")
+    future = publisher.publish(topic_path, data)
+
+    print(future.result())
+    print(f"Published messages to {topic_path}.")
+
+
 
 if __name__ == "__main__":
     PUBSUB_PROJECT_ID = os.environ.get('PUBSUB_PROJECT_ID')
@@ -52,11 +70,17 @@ if __name__ == "__main__":
 
     delete_parser = subparsers.add_parser("delete", help=delete_topic.__doc__)
     delete_parser.add_argument("topic_ids", nargs="+")
+
+    publish_parser = subparsers.add_parser("publish", help=publish_in_topic.__doc__)
+    publish_parser.add_argument("topic_id")
     
     args = parser.parse_args()
 
     if args.command == "list":
         list_topics(PUBSUB_PROJECT_ID)
+
+    if args.command == "publish":
+        publish_in_topic(PUBSUB_PROJECT_ID, args.topic_id)
     
     elif args.command == "create":
         for topic_id in args.topic_ids:
