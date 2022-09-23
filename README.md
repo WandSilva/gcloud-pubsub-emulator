@@ -52,6 +52,19 @@ $ python3 pubsub-utils/publisher.py delete <topic-1> <topic-N>
 $ python3 pubsub-utils/publisher.py list
 ```
 
+1.3. Publish in a topic:
+
+
+##### note: the message is not being passed by parameter yet, so to send custom messages it is necessary to edit the `publisher.publish_in_topic()`.
+
+
+```
+$ python3 pubsub-utils/publisher.py publish <topic_id>
+```
+
+
+
+
 ### 2 Subscriptions Management
 2.1. Create subscriptions:
 
