@@ -1,95 +1,160 @@
-# Gcloud Pub/Sub Emulador
 
-This project was developed to facilitate the use of [Pub/Sub Emulator](https://cloud.google.com/pubsub/docs/emulator) for testing on localhost or development environment.
+# Gcloud Pub/Sub Emulator
 
-Python scripts have been created (based on the scripts provided [here](https://github.com/googleapis/python-pubsub)) to facilitate the management of Topics and Subscriptions.
+<!-- PROJECT SHIELDS -->
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![GNU License][license-shield]][license-url]
 
-## Usage
+<div align="center">
 
-## - Start Pub/Sub Emulator:
-clone this repository and run:
-```
-  $ cd gcloud-pubsub-emulador/
-  $ make build
-  $ make run project_id=<fake-project-id>
-```
-The `project_id` does not need to represent a real Google Cloud project because the Pub/Sub emulator runs locally
+[![Cover][cover]][repo]
 
-## - Management of Topics and Subscriptions
+</div>
 
-The scripts present in [/pubsub-utils](/pubsub-utils) can be used to manage topics and subscriptions.
-Some functions will be described below:
+> This project was developed to help the usage of [Pub/Sub Emulator](https://cloud.google.com/pubsub/docs/emulator) for testing on localhost or development environment.
 
-Before run the python scripts is necessary install the dependencies and export the environment variables. If you don't want to use [Poetry](https://python-poetry.org/) to configure the environment, just install the dependencies present in [pyproject.toml](pyproject.toml) as you see fit.
+### Python Scripts
 
+They scripts provided by this repository have been created to support the management of **Topics** and **Subscriptions**. Those scripts are based on the resources provided by [googleapis/python-pubsub](https://github.com/googleapis/python-pubsub).
 
-```
-install project dependencies and spawns a shell
-$ poetry install
-$ poetry shell
-```
+### Adjusments and Improvements
 
-```
-export the environment variables:
-$ export PUBSUB_EMULATOR_HOST=localhost:8085
-$ export PUBSUB_PROJECT_ID=<fake-project-id>
-```
+The project is under construction and the next updates will cover the following topics:
 
-### 1. Topics Management:
+- [ ] Real usage example (or very similar to a real usage);
+- [ ] Support for Avro schemas
 
-1.1. Created topics:
-```
-$ python3 pubsub-utils/publisher.py create <topic-1> <topic-N>
+## 💻 Prerequisites
+
+Before starting, verify if you have the following requisites:
+
+* Python 3.10
+* Docker
+
+## 🚀 Installation
+
+Clone the repository:
+```bash
+git clone git@github.com:WandSilva/gcloud-pubsub-emulator.git
 ```
 
-1.2. Delete topics:
-```
-$ python3 pubsub-utils/publisher.py delete <topic-1> <topic-N>
-```
-
-1.3. List topics:
-```
-$ python3 pubsub-utils/publisher.py list
+In the `gcloud-pubsub-emulator` folder, start the Docker container with:
+```bash
+make build
 ```
 
-1.3. Publish in a topic:
-
-
-##### note: the message is not being passed by parameter yet, so to send custom messages it is necessary to edit the `publisher.publish_in_topic()`.
-
-
-```
-$ python3 pubsub-utils/publisher.py publish <topic_id>
+Now, it's time to install the Python dependencies using [Poetry](https://python-poetry.org/):
+```bash
+poetry install
 ```
 
+## ☕ Usage
 
+Please follow the initial steps in the order below.
 
+First, start the emulator container. You must replace `<fake-project-id>` by any project ID that you want, it won't represent a real Google Cloud project because the Pub/Sub emulator runs locally:
 
-### 2 Subscriptions Management
-2.1. Create subscriptions:
-
-``` 
-$ python3 pubsub-utils/subscriber.py create --topics <topic-1> <topic-N> --subscriptions <sub-1> <sub-N> 
+```bash
+make run project_id=<fake-project-id>
 ```
 
-
-2.2. Delete subscriptions:
-
-``` 
-$ python3 pubsub-utils/subscriber.py delete <subcscrption_id>
+In a separate terminal tab, pane or window, spawn the Poetry shell. This session will be used on the remaining instructions:
+```bash
+poetry shell
 ```
 
-2.3. List all subscriptions in the project:
-
-``` 
-$ python3 pubsub-utils/subscriber.py list-in-project
+Export the environment variables:
+```
+export PUBSUB_EMULATOR_HOST=localhost:8085
+export PUBSUB_PROJECT_ID=<fake-project-id>
 ```
 
+### Managing a PubSub Topic
 
-2.4. List all subscriptions in a topic:
+* Create a Topic
+  ```sh
+  python3 pubsub-utils/publisher.py create <topic-1> <topic-N>
+  ```
+* Delete a Topic
+  ```sh
+  python3 pubsub-utils/publisher.py delete <topic-1> <topic-N>
+  ```
+* List topics
+  ```sh
+  python3 pubsub-utils/publisher.py list
+  ```
+* Publish a message in a topic /*/*
+  ```sh
+  python3 pubsub-utils/publisher.py publish <topic_id>
+  ```
 
-``` 
-$ python3 pubsub-utils/subscriber.py list-in-topic <topic_id>
-```
+/*/* The message hasn't been passed by parameter yet, so to send custom messages, it's mandatory to edit the `publisher.publish_in_topic()`.
 
- 
+### Managing PubSub Subscriptions
+
+
+* Create a Subscription
+  ```sh
+  python3 pubsub-utils/subscriber.py create --topics <topic-1> <topic-N> --subscriptions <sub-1> <sub-N> 
+  ```
+* Delete a Subscription
+  ```sh
+  python3 pubsub-utils/subscriber.py delete <subcscrption_id>
+  ```
+* List all subscriptions in a given project
+  ```sh
+  python3 pubsub-utils/subscriber.py list-in-project
+  ```
+* List all subscriptions in a topic
+  ```sh
+  python3 pubsub-utils/subscriber.py list-in-topic <topic_id>
+  ```
+
+## 📫 Contributing
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 🤝 Maintainers & Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/12944524" width="100px;" alt="Photo of Wanderson Silva on GitHub"/><br>
+        <sub>
+          <b>Wanderson Silva</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/4166006" width="100px;" alt="Photo of Cristiano Santos on GitHub"/><br>
+        <sub>
+          <b>Cristiano Santos</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+## 📝 License
+
+Distributed under the GNU GPLv3 License. See `LICENSE.txt` for more information.
+
+[⬆ Back to top](#gcloud-pubsub-emulator)<br>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[cover]: cover.png
+[repo]: https://github.com/WandSilva/gcloud-pubsub-emulator
+[stars-shield]: https://img.shields.io/github/stars/WandSilva/gcloud-pubsub-emulator.svg?style=for-the-badge
+[stars-url]: https://github.com/WandSilva/gcloud-pubsub-emulator/stargazers
+[issues-shield]: https://img.shields.io/github/issues/WandSilva/gcloud-pubsub-emulator.svg?style=for-the-badge
+[issues-url]: https://github.com/WandSilva/gcloud-pubsub-emulator/issues
+[license-shield]: https://img.shields.io/github/license/WandSilva/gcloud-pubsub-emulator.svg?style=for-the-badge
+[license-url]: https://github.com/WandSilva/gcloud-pubsub-emulator/blob/main/LICENSE.txt
