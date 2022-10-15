@@ -84,12 +84,12 @@ export PUBSUB_PROJECT_ID=<fake-project-id>
   ```sh
   python3 pubsub-utils/publisher.py list
   ```
-* Publish a message in a topic /*/*
+* Publish a message in a topic \*\*
   ```sh
   python3 pubsub-utils/publisher.py publish <topic_id>
   ```
 
-/*/* The message hasn't been passed by parameter yet, so to send custom messages, it's mandatory to edit the `publisher.publish_in_topic()`.
+\*\* The message hasn't been passed by parameter yet, so to send custom messages, it's mandatory to edit the `publisher.publish_in_topic()`.
 
 ### Managing PubSub Subscriptions
 
