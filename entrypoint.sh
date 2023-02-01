@@ -15,7 +15,6 @@ fi
 
 gcloud beta emulators pubsub start \
     --host-port=$PUBSUB_EMULATOR_HOST \
-    --project=$PUBSUB_PROJECT_ID \
-    --data-dir=/data
+    --project=$PUBSUB_PROJECT_ID
 
 exec $@

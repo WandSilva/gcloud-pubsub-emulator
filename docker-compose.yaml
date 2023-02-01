@@ -8,18 +8,20 @@ services:
     environment:
       PUBSUB_PROJECT_ID: default
       PUBSUB_EMULATOR_HOST: 0.0.0.0:8432
+    entrypoint: ./entrypoint.sh
     command:
       - sh
       - -c
       - |
-        publisher create topic-1
-        subscriber create --topics topic-1 --subscriptions sub-1
+        echo "entrou"
+        python3 /app/pubsub-utils/publisher.py create topic-1
+        python3 /app/pubsub-utils/subscriber.py create --topics topic-1 --subscriptions sub-1
 
     restart: on-failure
     ports:
       - 8432:8432
     volumes:
-      - ./volumes/pub-sub:/data
+      - ./volumes/pub-sub:/opt/data
     networks:
       - gcp
 
