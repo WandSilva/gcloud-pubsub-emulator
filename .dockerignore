@@ -1,0 +1,10 @@
+*.png
+*.md
+Makefile
+*docker-compose*
+.git*
+*.txt
+.dockerignore
+*Dockerfile*
+.DS_Store
+volumes*
