@@ -12,8 +12,8 @@ services:
       - sh
       - -c
       - |
-        python3 /pubsub-utils/publisher.py create topic-1
-        python3 /pubsub-utils/subscriber.py create --topics topic-1 --subscriptions sub-1
+        publisher create topic-1
+        subscriber create --topics topic-1 --subscriptions sub-1
 
     restart: on-failure
     ports:
