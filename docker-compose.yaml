@@ -21,8 +21,8 @@ services:
     volumes:
       - ./volumes/pub-sub:/data
     networks:
-      - lend
+      - gcp
 
 networks:
-  lend:
+  gcp:
     driver: bridge
