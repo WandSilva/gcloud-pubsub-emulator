@@ -1,0 +1,5 @@
+*.png
+*.md
+Makefile
+docker-compose.yaml
+.git*
