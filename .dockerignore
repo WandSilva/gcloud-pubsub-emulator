@@ -3,3 +3,4 @@
 Makefile
 docker-compose.yaml
 .git*
+*.txt
