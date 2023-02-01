@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  pub_sub:
+    container_name: pub_sub
+    build:
+      context: .
+    environment:
+      PUBSUB_PROJECT_ID: default
+      PUBSUB_EMULATOR_HOST: 0.0.0.0:8432
+    command:
+      - sh
+      - -c
+      - |
+        python3 /pubsub-utils/publisher.py create topic-1
+        python3 /pubsub-utils/subscriber.py create --topics topic-1 --subscriptions sub-1
+
+    restart: on-failure
+    ports:
+      - 8432:8432
+    volumes:
+      - ./volumes/pub-sub:/data
+    networks:
+      - lend
+
+networks:
+  lend:
+    driver: bridge
