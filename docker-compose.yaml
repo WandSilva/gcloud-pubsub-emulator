@@ -6,11 +6,11 @@ services:
     build:
       context: .
     environment:
-      PUBSUB_PROJECT_ID: default
-      PUBSUB_EMULATOR_HOST: 0.0.0.0:8432
+      PUBSUB_PROJECT_ID: ${PUBSUB_PROJECT_ID}
+      PUBSUB_EMULATOR_HOST: 0.0.0.0:8085
     restart: on-failure
     ports:
-      - 8432:8432
+      - 8085:8085
     volumes:
       - ./volumes/pub-sub:/opt/data
     networks:

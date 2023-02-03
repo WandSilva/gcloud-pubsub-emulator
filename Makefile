@@ -9,6 +9,7 @@ run-container:
 .PHONY: up
 up:
 	docker-compose up -d
+	@echo "Wait a few seconds for the emulator to complete initialization."
 
 .PHONY: down
 down:
