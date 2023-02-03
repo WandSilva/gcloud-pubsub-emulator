@@ -4,7 +4,7 @@ build:
 
 .PHONY : run-container
 run-container:
-	docker run --rm -p "8432:8432" --env 'PUBSUB_PROJECT_ID=$(project_id)' pubsub-emulator
+	docker run --rm -p "8085:8085" --env 'PUBSUB_PROJECT_ID=$(project_id)' pubsub-emulator
 
 .PHONY: up
 up:
