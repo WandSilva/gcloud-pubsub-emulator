@@ -32,19 +32,14 @@ Before starting, verify if you have the following requisites:
 * Python 3.10
 * Docker
 
-## 🚀 Installation
+## 🚀 Setup
 
 Clone the repository:
 ```bash
 git clone git@github.com:WandSilva/gcloud-pubsub-emulator.git
 ```
 
-In the `gcloud-pubsub-emulator` folder, start the Docker container with:
-```bash
-make build
-```
-
-Now, it's time to install the Python dependencies using [Poetry](https://python-poetry.org/):
+In the `gcloud-pubsub-emulator` folder, install the Python dependencies using [Poetry](https://python-poetry.org/):
 ```bash
 poetry install
 ```
@@ -53,21 +48,22 @@ poetry install
 
 Please follow the initial steps in the order below.
 
-First, start the emulator container. You must replace `<fake-project-id>` by any project ID that you want, it won't represent a real Google Cloud project because the Pub/Sub emulator runs locally:
-
-```bash
-make run project_id=<fake-project-id>
-```
-
-In a separate terminal tab, pane or window, spawn the Poetry shell. This session will be used on the remaining instructions:
+First, spawn the Poetry shell. This session will be used on the remaining instructions:
 ```bash
 poetry shell
 ```
 
-Export the environment variables:
+
+
+Export the required environment variables. You must replace `<fake-project-id>` by any project ID that you want, it won't represent a real Google Cloud project because the Pub/Sub emulator runs locally:
 ```
-export PUBSUB_EMULATOR_HOST=localhost:8432
+export PUBSUB_EMULATOR_HOST=localhost:8085
 export PUBSUB_PROJECT_ID=<fake-project-id>
+```
+
+Start the Emulator:
+```bash
+make up
 ```
 
 ### Managing a PubSub Topic
