@@ -60,7 +60,8 @@ Export the required environment variables. You must replace `<fake-project-id>` 
 export PUBSUB_EMULATOR_HOST=localhost:8085
 export PUBSUB_PROJECT_ID=<fake-project-id>
 ```
-
+just make sure your service is trying to connect to pubsub using the same project id
+ 
 Start the Emulator:
 ```bash
 make up
