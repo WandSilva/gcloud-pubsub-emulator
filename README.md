@@ -81,12 +81,23 @@ make up
   ```sh
   python3 pubsub-utils/publisher.py list
   ```
-* Publish a message in a topic \*\*
+* Publish a message in a topic
   ```sh
   python3 pubsub-utils/publisher.py publish <topic_id>
   ```
+  This will publish a default message `{"foo": "bar"}`.
 
-\*\* The message hasn't been passed by parameter yet, so to send custom messages, it's mandatory to edit the `publisher.publish_in_topic()`.
+* Publish a custom message from a JSON file
+  ```sh
+  python3 pubsub-utils/publisher.py publish <topic_id> --message-json-file <path-to-json-file>
+  ```
+  
+  Example:
+  ```sh
+  python3 pubsub-utils/publisher.py publish my-topic --message-json-file message-sample.json
+  ```
+  
+  The JSON file should contain a valid JSON object.
 
 ### Managing PubSub Subscriptions
 
